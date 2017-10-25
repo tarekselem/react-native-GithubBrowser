@@ -8,12 +8,21 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: '#ecf0f1',
     padding: 10,
-    //borderWidth: 1,
+  },
+  containerGrid: {
+    flex: 1,
+    justifyContent:'flex-start',
+  },
+  navBar: {
+    height: 60,
+    //paddingTop: 65,
   },
   heading: {
     fontSize: 30,
     textAlign: 'center',
-    marginTop: 10
+    alignSelf: 'stretch',
+    // borderWidth: 1,
+    // borderColor: '#48bbec'
   },
   instructions: {
     textAlign: 'center',
@@ -26,6 +35,11 @@ export default StyleSheet.create({
     //paddingTop: 65,
     marginTop: 20,
     alignSelf: 'center'
+  },
+  icon: {
+    resizeMode: 'contain',
+    width: 40,
+    height: 30,
   },
   input: {
     height: 50,
