@@ -9,9 +9,15 @@ export default StyleSheet.create({
     backgroundColor: '#ecf0f1',
     padding: 10,
   },
-  containerGrid: {
-    flex: 1,
+  gridContainer: {
+    marginTop: 30,
     justifyContent:'flex-start',
+  },
+  gridRow:{
+    color: '#3498db', 
+    backgroundColor: '#ecf0f1', 
+    alignSelf: 'center',
+    padding:10,
   },
   navBar: {
     height: 60,

@@ -20,33 +20,28 @@ class AppContainer extends Component {
 
     render() {
         return(
-            <View>
-                <Text>Hi</Text>
-            <Feed />
-        </View>
-
-        //     <TabNavigator tabBarStyle={Styles.navBar}>
-        //     <TabNavigator.Item
-        //       selected={this.state.selectedTab === 'feed'}
-        //       title="Feed"
-        //       renderIcon={() => <Image style={Styles.icon} source={require('./img/github-home.png')} />}
-        //       //badgeText="9"
-        //       onPress={() => this.setState({ selectedTab: 'feed' })}>
-        //         <View>
-        //             <Feed />
-        //         </View>
-        //     </TabNavigator.Item>
-        //     <TabNavigator.Item
-        //       selected={this.state.selectedTab === 'search'}
-        //       title="Search"
-        //       renderIcon={() => <Image style={Styles.icon} source={require('./img/github-search.png')} />}
-        //       //renderBadge={() => <View />}
-        //       onPress={() => this.setState({ selectedTab: 'search' })}>
-        //       <View>
-        //           <Text>Tab2</Text>
-        //       </View>
-        //     </TabNavigator.Item>
-        //   </TabNavigator>
+            <TabNavigator tabBarStyle={Styles.navBar}>
+            <TabNavigator.Item
+              selected={this.state.selectedTab === 'feed'}
+              title="Feed"
+              renderIcon={() => <Image style={Styles.icon} source={require('./img/github-home.png')} />}
+              //badgeText="9"
+              onPress={() => this.setState({ selectedTab: 'feed' })}>
+                <View>
+                    <Feed />
+                </View>
+            </TabNavigator.Item>
+            <TabNavigator.Item
+              selected={this.state.selectedTab === 'search'}
+              title="Search"
+              renderIcon={() => <Image style={Styles.icon} source={require('./img/github-search.png')} />}
+              //renderBadge={() => <View />}
+              onPress={() => this.setState({ selectedTab: 'search' })}>
+              <View>
+                  <Text>Tab2</Text>
+              </View>
+            </TabNavigator.Item>
+          </TabNavigator>
           );
     }
 }

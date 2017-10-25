@@ -14,15 +14,12 @@ class Feed extends Component {
     constructor(props){
         super(props);
 
-        var ds = new ListView.DataSource({
-            rowHasChanged: (r1,r2) => r1 !== r2
-        });
-
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows([
-                'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-              ]),
-        }
+              'John', 'Joel'
+            ])
+          };
     }
 
     fetchFeed(){
@@ -34,23 +31,30 @@ class Feed extends Component {
             fetch(url,{
                 headers: authInfo.header
             })
-            .then((response)=> response.json());
+            .then((response)=> response.json())
+            .then((responseData)=>{
+                var feedItems = responseData.filter((ev)=> ev.type == 'WatchEvent');
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(feedItems)
+                });
+            });
         });
     };
 
     renderRow(rowData){
-        debugger
-        return <Text style={{color: '#333', backgroundColor: '#fff', alignSelf: 'center'}}> 
-            {rowData} 
-        </Text>
+        return <View><Text style={Styles.gridRow}>{rowData}</Text></View>
+    }
+
+    componentDidMount(){
+        this.fetchFeed();
     }
 
     render() {
         return (
-            <View style={Styles.containerGrid}>
+            <View style={Styles.gridContainer}>
                 <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(rowData)=> <Text>{rowData}</Text>} 
+                renderRow={this.renderRow.bind(this)}
                 />
             </View>
         );
