@@ -7,15 +7,7 @@ const userKey = 'user';
 
 export class AuthService {
 
-    // objectify(array) {
-    //     return array.reduce(function(p, c) {
-    //          p[c[0]] = c[1];
-    //          return p;
-    //     }, {});
-    // }
-
     getAuthInfo(cb){
-        debugger;
         AsyncStorage.multiGet([authKey,userKey], (err,val)=>{
             if(err){
                 return cb(err);
@@ -24,10 +16,8 @@ export class AuthService {
                 return cb();
             }
 
-            //var zippedObj = objectify(val);
-            var zippedObj = _.zipObject(val);
-            
-            console.log('Authincator: '+zippedObj)
+            var zippedObj = Object.assign(...val.map(d => ({[d[0]]: d[1]})));
+
             
             if(!zippedObj[authKey]){
                 return cb();
@@ -37,7 +27,6 @@ export class AuthService {
                 header:{
                     Authorization: 'Basic '+ zippedObj[authKey]
                 },
-                //user: JSON.parse(val[1][1])
                 user: JSON.parse(zippedObj[userKey])
             };
             return cb(null,authInfo);
@@ -80,11 +69,6 @@ export class AuthService {
         }).catch((err) => {
             return cb(err);
         }). finally(() => {
-
-            // this.getAuthInfo((err,authInfo)=>{
-            //     console.log('auth from login : '+authInfo)
-            //   });
-
             return cb({showProgress: false});
         });
     }

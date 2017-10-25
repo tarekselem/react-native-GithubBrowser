@@ -78,21 +78,19 @@ class Login extends Component {
     onLoginPressed() {
         this.setState({showProgress: true});
         
-        // var auth = new AuthService();
-        // auth.login({
-        //     username: this.state.username,
-        //     password: this.state.password
-        // },(result)=>{
-        //     this.setState(Object.assign({
-        //         showProgress: false
-        //     },result));
+        var auth = new AuthService();
+        auth.login({
+            username: this.state.username,
+            password: this.state.password
+        },(result)=>{
+            this.setState(Object.assign({
+                showProgress: false
+            },result));
 
-        //     if(result.success && this.props.onLogin){
-        //         this.props.onLogin();
-        //     }
-        // });
-        
-        
+            if(result.success && this.props.onLogin){
+                this.props.onLogin();
+            }
+        });
     };
 }
 

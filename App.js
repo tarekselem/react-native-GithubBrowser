@@ -11,6 +11,7 @@ import Styles from './style';
 import AuthService from './services/authService';
 
 import Login from './login';
+import AppContianer from './appContainer';
 
 var _authenticator = new AuthService();
 
@@ -32,10 +33,7 @@ export default class App extends Component<{}> {
   };
 
   componentDidMount(){
-    console.log('componentDidMount here!')
     _authenticator.getAuthInfo((err,authInfo)=>{
-      console.log('auth: '+authInfo)
-
       this.setState({
         checkingAuth: false,
         isLoggedIn: authInfo !=null
@@ -47,23 +45,18 @@ export default class App extends Component<{}> {
       return (
         <View style={Styles.container}>
           <ActivityIndicator style={Styles.loader} animating={true} size='large' />
-          <Text style={Styles.heading}>Auth</ Text>
+          <Text style={Styles.heading}>Auth</Text>
         </View>
       );
     }
 
     if (this.state.isLoggedIn) {
       return(
-        <View style={Styles.container}>
-          <Text style={Styles.heading}>LoggedIn</ Text>
-          <Text style={Styles.heading}>{this.state.authInfo}</ Text>
-        </View>
+        <AppContianer />
       );
     } else {
       return (
-        <View style={Styles.container}>
           <Login onLogin={this.onLogin.bind(this)}/>
-        </View>
       );
     }
 
