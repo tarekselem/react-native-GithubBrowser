@@ -3,21 +3,25 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: '#ecf0f1',
     padding: 10,
+    // borderWidth: 1,
+    // borderColor: '#48bbec'
   },
   gridContainer: {
-    marginTop: 30,
+    //marginTop: 30,
     justifyContent:'flex-start',
   },
   gridRow:{
-    color: '#3498db', 
-    backgroundColor: '#ecf0f1', 
-    alignSelf: 'center',
-    padding:10,
+    flex:1,
+    flexDirection:'row',
+    padding:20,
+    alignItems: 'center',
+    borderColor: '#D7D7D7',
+    borderBottomWidth: 1,
   },
   navBar: {
     height: 60,
@@ -69,7 +73,10 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   loader: {
-    marginTop: 20
+    flexDirection:'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   error: {
     color: '#c0392b',

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    Image
+    Image,
+    NavigatorIOS,
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 
@@ -28,7 +29,13 @@ class AppContainer extends Component {
               //badgeText="9"
               onPress={() => this.setState({ selectedTab: 'feed' })}>
                 <View>
-                    <Feed />
+                    <NavigatorIOS
+                    style={{flex:1}}
+                    initialRoute={{
+                        component:Feed,
+                        title: 'Feed'
+                    }}
+                    />
                 </View>
             </TabNavigator.Item>
             <TabNavigator.Item
