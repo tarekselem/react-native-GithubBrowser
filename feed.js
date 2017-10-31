@@ -13,12 +13,15 @@ import AuthService from './services/authService';
 
 import PushPayload from './pushPayload';
 
+
+
 var _authenticator = new AuthService();
 
 class Feed extends Component {
     constructor(props) {
         super(props);
 
+        this.pressRow = this.pressRow.bind(this);
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });
@@ -49,11 +52,12 @@ class Feed extends Component {
     maintainActionString(action) {
         var maintainedStr = action.replace('Event', '');
         return (maintainedStr.match('e$') == 'e')
-            ? maintainedStr + 'd'
-            : maintainedStr + 'ed';
+            ? maintainedStr + 'd '
+            : maintainedStr + 'ed ';
     }
 
     pressRow(rowData){
+        debugger;
        this.props.navigator.push({
            title:'Push Event',
            component: PushPayload,
@@ -65,7 +69,7 @@ class Feed extends Component {
 
     renderRow(rowData) {
         return (
-            <TouchableHighlight onPress={()=>this.pressRow(rowData)} underlayColor='#ddd'>
+            <TouchableHighlight onPress={()=> this.pressRow(rowData)} underlayColor='#ddd'>
                 <View style={Styles.gridRow}>
                     <Image
                         source={{
@@ -91,10 +95,10 @@ class Feed extends Component {
                             <Text
                                 style={{
                                 fontWeight: 'bold'
-                            }}>{rowData.actor.login}
+                            }}>{rowData.actor.login}{'\n'}
                             </Text>
-                            {this.maintainActionString(rowData.type)}
-                            Repository:
+                              { this.maintainActionString(rowData.type) } 
+                             Repository:
                         </Text>
                         <Text
                             style={{
@@ -120,6 +124,7 @@ class Feed extends Component {
             );
         } else {
             return (
+                
                 <View style={Styles.gridContainer}>
                     <ListView
                         dataSource={this.state.dataSource}
